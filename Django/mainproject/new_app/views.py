@@ -6,8 +6,14 @@ class Page:
     @staticmethod
     def view(request):
         return HttpResponse(f"""
-        <h1> Добро пожаловать! </h1><br> 
-        <p> Это моя первая страница на django! </p>
+        <!DOCTYPE html>
+        <html>
+            <head></head>
+            <body>
+                <h1> Добро пожаловать! </h1>
+                <p> Меня зовут Николай и это моя первая страница на django! </p>
+            </body>
+        </html>
         """)
     
     def view_html(request):

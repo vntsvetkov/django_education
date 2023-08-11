@@ -20,6 +20,6 @@ from new_app.views import Page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', Page.view_html),
+    path('home/', Page.view),
     
 ]
