@@ -4,9 +4,9 @@ from django.urls import path, include
 from new_app.views import Page, NewCompany
 
 managers_patterns = [
-    path('', NewCompany.managers),
-    path('director/', NewCompany.managers, kwargs={"page": "director"}),
-    path('dev_manager/', NewCompany.managers, kwargs={"page": "dev_manager"}),
+    path('', NewCompany.managers, kwargs={"page": ""}, name="managers"),
+    path('director/', NewCompany.managers, kwargs={"page": "director"}, name="director"),
+    path('dev_manager/', NewCompany.managers, kwargs={"page": "dev_manager"}, name="dev_manager"),
 ]
 
 urlpatterns = [
@@ -15,7 +15,9 @@ urlpatterns = [
         Page.view, 
         kwargs={"name": "Николай", "company": "Google"}),
     path('index/', Page.view_by_get),
-    path('main/', NewCompany.main),
-    path('news/', NewCompany.news),
+    path('main/', NewCompany.main, name="main"),
+    path('news/', NewCompany.news, name="news"),
+    path('about/', NewCompany.about, name="about"),
     path('managers/', include(managers_patterns)),
+
 ]

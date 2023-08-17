@@ -64,22 +64,41 @@ class TemplateWebSite(ABC):
         return HttpResponseNotFound("Not Found")
     
 
+class Article:
+
+    def __init__(self, title, author, desc) -> None:
+        self.title = title
+        self.author = author
+        self.desc = desc
+
 class NewCompany(TemplateWebSite):
 
+    # http://127.0.0.1:8000/main/?name=Google
     def main(request):
+        name = request.GET.get("name", "Undefind")
         return render(request, 'main.html', {
             "name": "Google",
         })
 
+    # http://127.0.0.1:8000/news
     def news(request):
         
+        context = [
+            Article("Новость 1", "Иванов И.И.", "Описание 1"),
+            Article("Новость 2", "Иванов И.И.", "Описание 2")
+        ]
+
         return render(request, 'news.html', {
-            "news_list": ["Новость 1", "Новость 2", "Новость 3"]
+            "news_list": context
         })
 
+    # http://127.0.0.1:8000/about
     def about(request):
         return render(request, 'about.html')
 
+    # http://127.0.0.1:8000/managers/
+    # http://127.0.0.1:8000/managers/director
+    # http://127.0.0.1:8000/managers/dev_manager
     def managers(request, page):
         if not page:
             return render(request, f'managers/managers.html')

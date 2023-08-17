@@ -7,5 +7,16 @@
         <h1> 
             Добро пожаловать! Это главная страница компании {{ name }}
         </h1>
+        <ul>
+            <li><a href={% url 'main' %}> Главная </li>
+            <li><a href={% url 'news' %}> Новости </li>
+            <li><a href={% url 'managers' %}> Сотрудники 
+                 <ul>
+                    <li><a href={% url 'director' %}> Директор </li>
+                    <li><a href={% url 'dev_manager' %}> Руководитель разработки </li>
+                 </ul>
+            </li>
+            <li><a href={% url 'about' %}> О компании </li>
+        </ul>
     </body>
 </html>
