@@ -6,19 +6,6 @@
 
     <body>
         <h1> Добро пожаловать! Это новостная лента компании </h1>
-        <ul>
-            {% for article in news_list %}
-                <article style="display: block; width: 300px; border: 1px solid black;" >
-                    <h2> {{article.title}} </h2>
-                    <p><i> {{article.author}} </i></p>
-                    <p> {{article.desc}} </p>
-                    
-                </article>
-                <br>
-            {% endfor %}
-
-            
-
-        </ul>
+        {% include 'article.html' %}
     </body>
 </html>

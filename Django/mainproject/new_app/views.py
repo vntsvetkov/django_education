@@ -104,3 +104,4 @@ class NewCompany(TemplateWebSite):
             return render(request, f'managers/managers.html')
 
         return render(request, f'managers/{page}.html')
+    
