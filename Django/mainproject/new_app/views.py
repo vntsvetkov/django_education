@@ -105,3 +105,9 @@ class NewCompany(TemplateWebSite):
 
         return render(request, f'managers/{page}.html')
     
+    def dynamic_path(request, page):
+        # Надо как то знать о страницах 
+        if not page:
+            return render(request, f'managers/managers.html')
+
+        return render(request, f'managers/{page}.html')
