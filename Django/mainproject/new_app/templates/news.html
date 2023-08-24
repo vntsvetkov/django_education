@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
+{% extends "basepage.html" %}        
         
-    </head>
-
-    <body>
-        <h1> Добро пожаловать! Это новостная лента компании </h1>
+{% block content %}
+    <div class="container">
         {% include 'article.html' %}
-    </body>
-</html>
+    </div>
+{% endblock content %}
+

@@ -1,9 +1,9 @@
         {% for article in news_list %}
-            <article style="display: block; width: 300px; border-bottom: 1px solid black;" >
-                <h2> {{article.title}} </h2>
-                <p><i> {{article.author}} </i></p>
-                <p> {{article.desc}} </p>
-    
-            </article>
-            <br>
+            <div class="card mb-3" style="width: 18rem; ">
+                <div class="card-body">
+                <h5 class="card-title"> {{article.title}} </h5>
+                <p class="card-text"> {{article.desc}} </p>
+                <a href="#" class="btn btn-success">Читать далее</a>
+                </div>
+            </div>
         {% endfor %}
