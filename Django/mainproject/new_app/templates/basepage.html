@@ -3,8 +3,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="{% static "css/styles.css" %}" />
         <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
+        <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+        
     </head>
 
     <body>
@@ -32,10 +33,13 @@
                       </li>
                     </ul>
                   </div>
-                  <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
+                  <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-success" type="button">
+                      <a style="text-decoration: none; color: white;" href={% url 'authorization' %}>Sign in</a>
+                    </button>
+                    <button class="btn btn-success" type="button">Sign Up</button>
+
+                  </div>
                 </div>
               </nav>
         </header>

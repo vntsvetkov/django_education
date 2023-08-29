@@ -75,10 +75,8 @@ class NewCompany(TemplateWebSite):
 
     # http://127.0.0.1:8000/main/?name=Google
     def main(request):
-        name = request.GET.get("name", "Undefind")
-        return render(request, 'main.html', {
-            "name": "Google",
-        })
+
+        return render(request, 'main.html')
 
     # http://127.0.0.1:8000/news
     def news(request):
@@ -111,3 +109,28 @@ class NewCompany(TemplateWebSite):
             return render(request, f'managers/managers.html')
 
         return render(request, f'managers/{page}.html')
+
+
+class FormManage:
+
+    def authorization(request):
+        return render(request, 'authorization.html')
+
+    def check_authorization(request):
+        name = request.POST.get("login")
+        password = request.POST.get("password")
+        
+        users = [
+            {"логин": "user1", "пароль": "password1"},
+            {"логин": "user2", "пароль": "password2"},
+        ]
+
+        a = [True for record in users if record['логин'] == name and record['пароль'] == password]
+
+
+        if len(a) > 0: 
+            return render(request, 'main.html')
+        else:
+            return render(request, 'authorization.html', {
+                "error": "Неврерный логин или пароль"
+            })
