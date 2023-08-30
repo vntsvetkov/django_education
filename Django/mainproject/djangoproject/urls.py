@@ -15,12 +15,11 @@ import new_app.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', FormManage.check_authorization),
     path('main/', NewCompany.main, name="main"),
     path('news/', NewCompany.news, name="news"),
     path('about/', NewCompany.about, name="about"),
-    # path('managers/<str:page>', NewCompany.dynamic_path),
     path('managers/', include(new_app.urls)),
     path('authorization/', FormManage.authorization, name="authorization"),
+    path('reauthorization/', FormManage.check_authorization, name="check_authorization"),
     re_path(r'^\w+', NewCompany.main),
 ]

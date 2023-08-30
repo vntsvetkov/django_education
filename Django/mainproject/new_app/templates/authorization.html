@@ -9,7 +9,7 @@
 
     <body>
         <div class="container mt-3">
-        <form action="/index/" method="post">
+        <form action="{% url 'check_authorization' %}" method="post">
             {% csrf_token %}
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Логин</label>

@@ -5,11 +5,12 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
         <link rel="stylesheet" href="{% static "css/styles.css" %}" />
-        
+        <title> {% block title %}{% endblock title %} </title>
     </head>
 
     <body>
 
+      {% block header %}
         <header class="mb-3">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container">
@@ -25,8 +26,14 @@
                       <li class="nav-item">
                         <a class="nav-link" href={% url 'news' %}>Новости</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href={% url 'managers' %}>Сотрудники</a>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link" data-bs-toggle="dropdown" href={% url 'managers' %}>Сотрудники</a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href={% url 'director' %}>Директор</a></li>
+                          <li><a class="dropdown-item" href={% url 'dev_manager' %}>Руководитель центра разработки</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href={% url 'managers' %}>Все сотрудники</a></li>
+                        </ul>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href={% url 'about' %}>О компании</a>
@@ -43,13 +50,11 @@
                 </div>
               </nav>
         </header>
-        
+        {% endblock header %}
+
         <div> {% block content %}{% endblock content %} </div>
-        <footer> </footer>
-        <!-- 
-        <li><a href={% url 'director' %}> Директор </li>
-        <li><a href={% url 'dev_manager' %}> Руководитель разработки </li>
-        -->
+
+        <footer> {% block footer %}{% endblock footer %} </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>

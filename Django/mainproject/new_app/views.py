@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from abc import ABC, abstractmethod
 
 class Page:
@@ -102,13 +102,6 @@ class NewCompany(TemplateWebSite):
             return render(request, f'managers/managers.html')
 
         return render(request, f'managers/{page}.html')
-    
-    def dynamic_path(request, page):
-        # Надо как то знать о страницах 
-        if not page:
-            return render(request, f'managers/managers.html')
-
-        return render(request, f'managers/{page}.html')
 
 
 class FormManage:
@@ -127,9 +120,8 @@ class FormManage:
 
         a = [True for record in users if record['логин'] == name and record['пароль'] == password]
 
-
         if len(a) > 0: 
-            return render(request, 'main.html')
+            return HttpResponseRedirect('/main')
         else:
             return render(request, 'authorization.html', {
                 "error": "Неврерный логин или пароль"
