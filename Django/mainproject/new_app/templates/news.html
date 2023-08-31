@@ -18,17 +18,21 @@
 
 {% block footer %}
 
-    <div class="container" style="padding: 50px; background-color: black;">
+    <div class="container-fluid" style="padding: 50px; background-color: black;">
         <div class="row justify-content-evenly">
             <div class="col-6">
             <h4 style="text-align: center;"> Подпишитесь на нашу рассылку </h4>
             <p style="text-align: center;"> Получайте специальные предложения и новости </p>
             </div>
         </div>
-            <form class="d-flex">
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                <button class="btn btn-outline-success" type="submit">Отправить</button>
+            <form class="d-flex" method="post" action="{% url 'subscribe' %}">
+                {% csrf_token %}
+                <input type="email" name="useremail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <button class="btn btn-outline-success" type="submit">
+                    <a style="text-decoration: none; color: white;">Отправить</a>
+                </button>
             </form>
+            <div style="color: red;" class="form-text">{{ error }}</div>
     </div>
 
 {% endblock footer %}

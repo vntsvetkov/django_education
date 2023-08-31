@@ -21,5 +21,6 @@ urlpatterns = [
     path('managers/', include(new_app.urls)),
     path('authorization/', FormManage.authorization, name="authorization"),
     path('reauthorization/', FormManage.check_authorization, name="check_authorization"),
+    path('subscribe/', FormManage.subscribe, name="subscribe"),
     re_path(r'^\w+', NewCompany.main),
 ]

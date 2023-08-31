@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from abc import ABC, abstractmethod
+import time
 
 class Page:
 
@@ -131,3 +132,17 @@ class FormManage:
             return render(request, 'authorization.html', {
                 "error": "Неврерный логин или пароль"
             })
+
+    def subscribe(request):
+        user_email = request.POST.get("useremail")
+
+        # Записать в БД email, с условием что его еще там нет
+
+        time.sleep(1)
+        return render(request, 'main.html', {
+                "message": "Вы подписаны на новостную рассылку",
+                "subscribe": True,
+            })
+
+
+        
