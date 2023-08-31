@@ -3,7 +3,40 @@
 {% block content %}
     <div class="container">
         <h1> Добро пожаловать! Это новостная лента компании </h1>
-        {% include 'article.html' %}
+        
+        <form style="width: 400px;" class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+        <div style="padding-top: 20px;">
+            {% include 'article.html' %}
+        </div>
+
     </div>
 {% endblock content %}
+
+{% block footer %}
+
+    <div class="container">
+        <div class="row justify-content-evenly">
+            <div class="col-6">
+            <h4 style="text-align: center;"> Подпишитесь на нашу рассылку </h4>
+            <p style="text-align: center;"> Получайте специальные предложения и новости </p>
+            </div>
+        </div>
+
+        <form class="row justify-content-evenly">
+            <div class="col-6">
+
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"> 
+                
+                    <button type="submit" class="btn btn-primary">Confirm identity</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock footer %}
+
 
