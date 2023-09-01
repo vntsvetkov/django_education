@@ -3,12 +3,11 @@
 {% block content %}
     <div class="container">
         <h1> Добро пожаловать! Это главная страница компании </h1> 
-
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ message }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
+        
+        {% autoescape off %}
+            {{ subscribe }}
+        {% endautoescape %}
+        
     </div>
 {% endblock content %}
 
