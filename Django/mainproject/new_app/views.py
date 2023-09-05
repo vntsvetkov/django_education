@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from abc import ABC, abstractmethod
 import time
+import datetime
 from .models import Article
 
 
@@ -79,6 +80,7 @@ class NewCompany(TemplateWebSite):
         
         context = Article.objects.all()
 
+        print("------------>", datetime.date.today())
         return render(request, 'news.html', {
             "news_list": context
         })
@@ -136,6 +138,8 @@ class FormManage:
                                  </div>
                              """
             })
+    
+    def create_article(request):
 
+        return render(request, 'create_article.html')
 
-        

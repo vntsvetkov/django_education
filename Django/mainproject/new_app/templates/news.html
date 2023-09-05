@@ -4,10 +4,15 @@
     <div class="container">
         <h1> Добро пожаловать! Это новостная лента компании </h1>
         
-        <form style="width: 400px;" class="d-flex">
+        <form style="width: 550px;" class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <button class="btn btn-outline-success me-2" type="submit">Search</button>
+            <button type="button" class="btn btn-outline-success" style="width: 300px;">
+                <a style="text-decoration: none;" href={% url 'create_article' %}>Предложить пост</a>
+            </button>
         </form>
+
+        
 
         <div style="padding-top: 20px;">
             {% include 'article.html' %}
