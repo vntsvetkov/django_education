@@ -25,9 +25,9 @@
             <p style="text-align: center;"> Получайте специальные предложения и новости </p>
             </div>
         </div>
-            <form class="d-flex" method="post" action="{% url 'subscribe' %}">
+            <form class="d-flex justify-content-center" method="post" action="{% url 'subscribe' %}">
                 {% csrf_token %}
-                <input type="email" name="useremail" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                <input type="email" name="useremail" class="form-control me-2 w-25" id="exampleFormControlInput1" placeholder="name@example.com">
                 <button class="btn btn-outline-success" type="submit">
                     <a style="text-decoration: none; color: white;">Отправить</a>
                 </button>

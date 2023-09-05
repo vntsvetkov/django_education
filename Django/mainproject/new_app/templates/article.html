@@ -1,8 +1,10 @@
         {% for article in news_list %}
-            <div class="card mb-3" style="width: 18rem; ">
+            <div class="card mb-3" style="width: 25rem; ">
                 <div class="card-body">
                 <h5 class="card-title"> {{article.title}} </h5>
-                <p class="card-text"> {{article.desc}} </p>
+                <p class="card-text"> {{article.author}} </p>
+                <p class="card-text"> {{article.date}} </p>
+                <p class="card-text"> {{article.description}} </p>
                 <a href="#" class="btn btn-success">Читать далее</a>
                 </div>
             </div>

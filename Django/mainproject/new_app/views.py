@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from abc import ABC, abstractmethod
 import time
+from .models import Article
+
 
 class Page:
 
@@ -63,14 +65,7 @@ class TemplateWebSite(ABC):
     @abstractmethod
     def managers(request):
         return HttpResponseNotFound("Not Found")
-    
-
-class Article:
-
-    def __init__(self, title, author, desc) -> None:
-        self.title = title
-        self.author = author
-        self.desc = desc
+        
 
 class NewCompany(TemplateWebSite):
 
@@ -82,18 +77,10 @@ class NewCompany(TemplateWebSite):
     # http://127.0.0.1:8000/news
     def news(request):
         
-        context = [
-            Article("Новость 1", "Иванов И.И.", "Описание 1"),
-            Article("Новость 2", "Иванов И.И.", "Описание 2"),
-            Article("Новость 3", "Иванов И.И.", "Описание 3"),
-            Article("Новость 4", "Иванов И.И.", "Описание 4"),
-            Article("Новость 5", "Иванов И.И.", "Описание 5"),
-            Article("Новость 6", "Иванов И.И.", "Описание 6"),
-            Article("Новость 7", "Иванов И.И.", "Описание 7")
-        ]
+        context = Article.objects.all()
 
         return render(request, 'news.html', {
-            "news_list": context[:5]
+            "news_list": context
         })
 
     # http://127.0.0.1:8000/about
