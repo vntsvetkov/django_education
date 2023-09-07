@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from abc import ABC, abstractmethod
+import django.db
 import time
 import datetime
-from .models import Article
+from .models import Article, MailingAddress
 
 
 class Page:
@@ -125,9 +126,21 @@ class FormManage:
     def subscribe(request):
         user_email = request.POST.get("useremail")
 
-        # Записать в БД email, с условием что его еще там нет
+        try:
+            email = MailingAddress(email=user_email)
+            email.save()
+        except django.db.IntegrityError as e:
+            return render(request, 'main.html', {
+                "subscribe": """ <div class="alert alert-success d-flex alert-dismissible fade show" role="alert">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                    </svg>
+                                    <strong> Подписка на этот адрес электронной почты была оформлена ранее </strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                 </div>
+                             """
+            })
 
-        time.sleep(1)
         return render(request, 'main.html', {
                 "subscribe": """ <div class="alert alert-success d-flex alert-dismissible fade show" role="alert">
                                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">

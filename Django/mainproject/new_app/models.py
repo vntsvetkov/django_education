@@ -9,10 +9,17 @@ class Article(models.Model):
     date = models.DateField(default=datetime.date.today())
     description = models.TextField(default="Статья в разработке")
 
+    def __str__(self):
+        return self.title
+
+
 
 # БД для хранения email адресов для рассылки
 class MailingAddress(models.Model):
-    ...
+    email = models.EmailField(unique=True, null=True, blank=True)
+
+    def __str__(self):
+        return self.email
 
 # Пользователи
 class Pesron(models.Model):
