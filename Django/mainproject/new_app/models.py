@@ -1,12 +1,24 @@
 from django.db import models
 import datetime
 
+# Пользователи
+class Person(models.Model):
+    name = models.CharField(max_length=30, default="Неизвестно")
+    surname = models.CharField(max_length=30, default="Неизвестно")
+    phone = models.CharField(max_length=17, default="Неизвестно")
+    email = models.EmailField(unique=True, null=True, blank=True)
+    city = models.CharField(max_length=30, default="Неизвестно")
+    # Необходимо связать пользователя с его аккаунтом
+
+    def __str__(self) -> str:
+        return f"{self.surname} {self.name[0]}."
+
 
 # Статья
 class Article(models.Model):
     title = models.CharField(max_length=30, default="Без названия")
     # Необходимо связать автора с экземпляром Person
-    author = models.CharField(max_length=20, default="Неизвестный автор")
+    author = models.ForeignKey(Person, on_delete=models.CASCADE)
     date = models.DateField(default=datetime.date.today())
     description = models.TextField(default="Статья в разработке")
 
@@ -31,15 +43,6 @@ class MailingAddress(models.Model):
     def __str__(self):
         return self.email
 
-
-# Пользователи
-class Person(models.Model):
-    name = models.CharField(max_length=30, default="Неизвестно")
-    surname = models.CharField(max_length=30, default="Неизвестно")
-    phone = models.CharField(max_length=17, default="Неизвестно")
-    email = models.EmailField(unique=True, null=True, blank=True)
-    city = models.CharField(max_length=30, default="Неизвестно")
-    # Необходимо связать пользователя с его аккаунтом
 
 # Аккаунт
 class Account(models.Model):
