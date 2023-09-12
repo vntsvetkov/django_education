@@ -4,7 +4,7 @@ from abc import ABC, abstractmethod
 import django.db
 import time
 import datetime
-from .models import Article, MailingAddress
+from .models import Article, MailingAddress, Account
 
 
 class Page:
@@ -80,8 +80,8 @@ class NewCompany(TemplateWebSite):
     def news(request):
         
         context = Article.objects.all()
+        # TODO: как запросить список объектов с учетом связанных тем
 
-        print("------------>", datetime.date.today())
         return render(request, 'news.html', {
             "news_list": context
         })
@@ -109,12 +109,9 @@ class FormManage:
         name = request.POST.get("login")
         password = request.POST.get("password")
         
-        users = [
-            {"логин": "user1", "пароль": "password1"},
-            {"логин": "user2", "пароль": "password2"},
-        ]
+        accounts = Account.objects.filter(login=name)
 
-        a = [True for record in users if record['логин'] == name and record['пароль'] == password]
+        a = [True for record in accounts if record.login == name and record.password == password]
 
         if len(a) > 0: 
             return HttpResponseRedirect('/main')

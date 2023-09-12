@@ -14,26 +14,41 @@ class Person(models.Model):
         return f"{self.surname} {self.name[0]}."
 
 
+# Аккаунт
+class Account(models.Model):
+    login = models.CharField(max_length=30, default="Неизвестно")
+    password = models.CharField(max_length=30, default="Неизвестно")
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, null=True)
+
+    def __str__(self) -> str:
+        return f"{self.login}"
+
+
+# Тема статьи
+class Theme(models.Model):
+    name = models.CharField(max_length=30, default="Без названия")
+
+    def __str__(self) -> str:
+        return f"{self.name}"
+
+
 # Статья
 class Article(models.Model):
     title = models.CharField(max_length=30, default="Без названия")
-    # Необходимо связать автора с экземпляром Person
-    author = models.ForeignKey(Person, on_delete=models.CASCADE)
+    author = models.ForeignKey(Person, on_delete=models.DO_NOTHING)
     date = models.DateField(default=datetime.date.today())
     description = models.TextField(default="Статья в разработке")
+    theme = models.ManyToManyField(Theme)
 
     def __str__(self):
         return self.title
 
 
-# Тема статьи
-class Theme(models.Model):
-    ...
-
 
 # Многие ко многим 
-class ArticlesThemes(models.Model):
-    ...
+# class ArticlesThemes(models.Model):
+#     id_article = models.ForeignKey(Article)
+#     id_theme = models.ForeignKey(Theme)
 
 
 # БД для хранения email адресов для рассылки
@@ -43,9 +58,4 @@ class MailingAddress(models.Model):
     def __str__(self):
         return self.email
 
-
-# Аккаунт
-class Account(models.Model):
-    login = models.CharField(max_length=30, default="Неизвестно")
-    password = models.CharField(max_length=30, default="Неизвестно")
 
