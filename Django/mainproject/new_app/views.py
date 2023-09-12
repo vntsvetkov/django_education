@@ -80,6 +80,7 @@ class NewCompany(TemplateWebSite):
     def news(request):
         
         context = Article.objects.all()
+        
         # TODO: как запросить список объектов с учетом связанных тем
 
         return render(request, 'news.html', {

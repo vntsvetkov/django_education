@@ -59,3 +59,5 @@ class MailingAddress(models.Model):
         return self.email
 
 
+class Profile(models.Model):
+    ...
