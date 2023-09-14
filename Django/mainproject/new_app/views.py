@@ -79,9 +79,21 @@ class NewCompany(TemplateWebSite):
     # http://127.0.0.1:8000/news
     def news(request):
         
-        context = Article.objects.all()
+        context = []
+
+        articles = Article.objects.all()
         
-        # TODO: как запросить список объектов с учетом связанных тем
+        for new_article in articles:
+            themes = new_article.theme.all()
+            themes = " ".join(['#' + theme.name for theme in themes])
+            context.append((new_article, themes))
+        
+        """ 
+        [
+            (Artcle1, themes),
+            ()
+        ]
+        """
 
         return render(request, 'news.html', {
             "news_list": context

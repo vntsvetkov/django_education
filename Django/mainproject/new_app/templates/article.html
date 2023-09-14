@@ -1,11 +1,11 @@
-        {% for article in news_list %}
+        {% for article, themes in news_list %}
             <div class="card mb-3" style="width: 35rem; ">
                 <div class="card-body">
                 <h5 class="card-title"> {{article.title}} </h5>
                 <p class="card-text"> Автор: <b>{{article.author}}</b> </p>
                 <p class="card-text"> Дата: <b> {{article.date}}</b> </p>
                 <p class="card-text" style="text-align: justify;"> {{article.description}} </p>
-                <p class="card-text"> Темы: <b> {{article.theme.name}}</b> </p>
+                <p class="card-text"><b> {{themes}}</b> </p>
                 <a href="#" class="btn btn-success">Читать далее</a>
                 </div>
             </div>

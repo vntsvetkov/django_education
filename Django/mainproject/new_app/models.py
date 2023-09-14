@@ -44,13 +44,6 @@ class Article(models.Model):
         return self.title
 
 
-
-# Многие ко многим 
-# class ArticlesThemes(models.Model):
-#     id_article = models.ForeignKey(Article)
-#     id_theme = models.ForeignKey(Theme)
-
-
 # БД для хранения email адресов для рассылки
 class MailingAddress(models.Model):
     email = models.EmailField(unique=True, null=True, blank=True)
@@ -61,3 +54,43 @@ class MailingAddress(models.Model):
 
 class Profile(models.Model):
     ...
+
+
+
+"""
+query plan
+
+Через свойство theme в модели Article мы можем получать связанные со статьей темы и управлять ими.
+
+Создать статью
+new_article = Article.object.create()
+
+Добавить новую тему для статьи
+new_article.theme.create()
+
+Получим все темы статьи
+themes = new_article.theme.all()
+
+
+мы можем получить информацию о темах статьи через свойство theme, которое определено в модели Article.
+
+# создадим тему
+new_theme = Theme.objects.create(name="Python")
+ 
+# отдельно создаем статью и добавляем ее в тему
+article = Article(параметры)
+article.save()
+new_theme.article_set.add(article)
+ 
+# получим все статьи темы
+articles = new_theme.article_set.all()
+ 
+# получим количество статей по теме
+number = new_theme.article_set.count()
+ 
+# удялем из темы статью
+new_theme.article_set.remove(article)
+ 
+# удаляем все статьи из темы
+new_theme.article_set.clear()
+"""
