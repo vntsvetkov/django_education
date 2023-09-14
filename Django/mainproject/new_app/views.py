@@ -166,3 +166,7 @@ class FormManage:
 
         return render(request, 'create_article.html')
 
+
+    def registration(request):
+
+        return render(request, 'registration.html')

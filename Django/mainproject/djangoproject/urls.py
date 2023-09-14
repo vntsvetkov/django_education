@@ -22,6 +22,7 @@ urlpatterns = [
     path('authorization/', FormManage.authorization, name="authorization"),
     path('reauthorization/', FormManage.check_authorization, name="check_authorization"),
     path('subscribe/', FormManage.subscribe, name="subscribe"),
-    path('create_article', FormManage.create_article, name="create_article"),
+    path('create_article/', FormManage.create_article, name="create_article"),
+    path('registartion/', FormManage.registration, name="registration"),
     re_path(r'^\w+', NewCompany.main),
 ]
