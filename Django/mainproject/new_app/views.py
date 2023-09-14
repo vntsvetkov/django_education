@@ -170,3 +170,7 @@ class FormManage:
     def registration(request):
 
         return render(request, 'registration.html')
+
+    def check_registration(request):
+        # TODO: Релизовать чтение данных с формы
+        ...

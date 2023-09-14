@@ -24,5 +24,6 @@ urlpatterns = [
     path('subscribe/', FormManage.subscribe, name="subscribe"),
     path('create_article/', FormManage.create_article, name="create_article"),
     path('registartion/', FormManage.registration, name="registration"),
+    path('reregistration/', FormManage.check_registration, name="check_registration"),
     re_path(r'^\w+', NewCompany.main),
 ]
